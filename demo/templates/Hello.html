@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tutorial: Hello Dojo!</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <!-- load Dojo -->
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js"
+            data-dojo-config="async: true"></script>
+
+    <div id="authorContainer">
+<div>
+    <h3 data-dojo-attach-point="nameNode">${name}</h3>
+    <img class="${baseClass}Avatar" src="" data-dojo-attach-point="avatarNode">
+    <p data-dojo-attach-point="bioNode">${!bio}</p>
+</div>
+
+
+    </div>
+
+<script>
+   require(["dojo/request", "dojo/dom", "dojo/_base/array", "untitled2/demo/AuthorWidget", "dojo/domReady!"],
+    function(request, dom, arrayUtil, AuthorWidget){
+    // Load up our authors
+    request("untitled2/data/authors.json", {
+        handleAs: "json"
+    }).then(function(authors){
+        // Get a reference to our container
+        var authorContainer = dom.byId("authorContainer");
+
+        arrayUtil.forEach(authors, function(author){
+            // Create our widget and place it
+            var widget = new AuthorWidget(author).placeAt(authorContainer);
+        });
+    });
+})
+
+
+
+</script>
+
+</body>
+</html>

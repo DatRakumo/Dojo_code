@@ -5,5 +5,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import TemplateView
-class Demo(TemplateView):
-    template_name = 'widget.demo.html'
+
+
+class HelloDojo (TemplateView):
+    template_name ='Hello.html'
